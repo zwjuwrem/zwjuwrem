@@ -1,0 +1,20 @@
+name: Build and Test
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+      - name: Run build
+        run: |
+          echo 'Building Java project...'
+          mvn clean package
+      - name: Test
+        run: |
+          echo 'Testing Java project...'
+          mvn test
